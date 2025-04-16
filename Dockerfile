@@ -18,5 +18,5 @@ COPY . .
 RUN useradd -m worker && chown -R worker:worker /app
 USER worker
 
-# Command to run the Celery worker
-CMD ["sh", "-c", "celery -A app.celery_app worker --loglevel=${LOG_LEVEL:-INFO}"] 
+# Command to run the Celery worker with environment variables
+CMD ["celery", "-A", "app.celery_app", "worker", "--loglevel=${LOG_LEVEL:-INFO}"] 
